@@ -26,10 +26,7 @@ Wikipedia.getArticle = function (title) {
       } else {
         extract = 'Not found'
       }
-
-      // console.log(extract)
       resolve(extract)
-      // console.debug(body
     })
   })
 }

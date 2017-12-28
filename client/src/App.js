@@ -1,21 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import CreateGapFill from './CreateGapFill'
+import GapFillQuestions from './GapFillQuestions'
+
+import './App.css'
 
 class App extends Component {
-  render() {
+  state = {
+    GFQs: []
+  }
+
+  getGFQs (title) {
+    if (!title) {
+      window.alert('Please fill input')
+    } else {
+      fetch('/getGFQ_mock?title=' + title)
+        .then(res => res.json())
+        .then(GFQs => this.setState({ GFQs }))
+    }
+  }
+
+  render () {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className='App'>
+        <CreateGapFill getGFQs={(title) => this.getGFQs(title)} />
+        <GapFillQuestions data={this.state.GFQs} />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

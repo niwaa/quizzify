@@ -15,4 +15,28 @@ router.get('/getGFQ', function (req, res, next) {
   }
 })
 
+// getGFQ_mock : mocked with test data for the Client.
+router.get('/getGFQ_mock', function (req, res, next) {
+  let GFQ = [
+    {
+      id: 1,
+      gapfill: 'The white __ arrived.',
+      distractors: ['cat', 'dog', 'pet', 'orange'],
+      answer: 'cat'
+    },
+    {
+      id: 2,
+      gapfill: 'The black __ arrived.',
+      distractors: ['cat', 'dog', 'pet', 'orange'],
+      answer: 'dog'
+    }
+  ]
+
+  if (!req.query.title) {
+    res.send('wikipedia title undefined')
+  } else {
+    res.json(GFQ)
+  }
+})
+
 module.exports = router

@@ -14,13 +14,9 @@ Pipeline.generateGFQdata = function (input) {
   Wikipedia.getArticle('cat')
   .then(function (article) {
     const sentences = Sentences.extractAll(article)
-    console.log('sentences', sentences)
-    console.log('sentences 0', sentences[0])
     const gap = Gaps.getMaxTFIDF(sentences, 0)
-    console.log('gap', gap)
-
     const gapFill = Pipeline.createGapFillSentence(sentences[0], gap)
-    console.log('gapFill', gapFill)
+    console.debug('gapFill', gapFill)
   })
 }
 

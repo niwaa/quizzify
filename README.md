@@ -23,6 +23,9 @@ Start the server:
 
 PORT=3001 node bin/www
 
+Client:
+
+cd client && yarn start
 
 ## Demo
 
