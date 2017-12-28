@@ -12,6 +12,8 @@
     "express": "~4.15.5",
     "jade": "~1.11.0",
     "morgan": "~1.9.0",
+    "natural": "^0.5.4",
+    "request": "^2.83.0",
     "serve-favicon": "~2.4.5"
   }
 }

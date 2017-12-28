@@ -19,6 +19,11 @@ Create the quizz in the web-app with HTML/JS/CSS.
 
 [to be completed]
 
+Start the server:
+
+PORT=3001 node bin/www
+
+
 ## Demo
 
 [to be completed]
