@@ -13,10 +13,9 @@ const CreateGapFill = function (props) {
 
   return (
     <div>
-      <h1>Gap Fill Question Generator</h1>
       <form onSubmit={(e) => _submit(e)}>
-        <input name='title' type='text' placeholder='Wikipedia Article Title. Ie: "Cat", "White House"' autoFocus />
-        <button>Generate</button>
+        <input className='title_input' name='title' type='text' placeholder='Enter a Wikipedia title' autoFocus />
+        <button>Generate Gap Fills</button>
       </form>
     </div>
   )

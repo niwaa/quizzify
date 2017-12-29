@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 class GapFillQuestions extends React.Component {
-
   _submitAnswer (answer, distractor) {
     if (answer === distractor) {
       window.alert('Good answer')

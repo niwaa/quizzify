@@ -1,5 +1,9 @@
+body {
+  padding: 20px
+}
+
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .App-logo {
@@ -20,6 +24,19 @@
 
 .App-intro {
   font-size: large;
+}
+
+.title_input {
+    font-size: 20px;
+    width: 200px;
+    padding: 10px;
+}
+
+button {
+  font-size: 15px;
+  padding: 5px;
+  background-color: #eee;
+  border-radius: 5px;
 }
 
 @keyframes App-logo-spin {
