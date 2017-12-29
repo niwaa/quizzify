@@ -179,6 +179,12 @@ commander@~2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.6.0.tgz#9df7e52fb2a0cb0fb89058ee80c3104225f37e1d"
 
+compromise@^11.2.1:
+  version "11.2.1"
+  resolved "https://registry.yarnpkg.com/compromise/-/compromise-11.2.1.tgz#fa04c0167ce9e8ca849e6e4362e3f8124241afb7"
+  dependencies:
+    efrt-unpack "2.0.3"
+
 constantinople@~3.0.1:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/constantinople/-/constantinople-3.0.2.tgz#4b945d9937907bcd98ee575122c3817516544141"
@@ -270,6 +276,10 @@ ecc-jsbn@~0.1.1:
 ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
+
+efrt-unpack@2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/efrt-unpack/-/efrt-unpack-2.0.3.tgz#6ada57793e3dda16d182f6a371fbe3d135af9dc2"
 
 encodeurl@~1.0.1:
   version "1.0.1"
@@ -566,9 +576,9 @@ nan@^2.4.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.8.0.tgz#ed715f3fe9de02b57a5e6252d90a96675e1f085a"
 
-natural@^0.5.4:
+"natural@git://github.com/NaturalNode/natural.git#3c492db8f96db88b3acefaaba84c2f97b0477b1b":
   version "0.5.4"
-  resolved "https://registry.yarnpkg.com/natural/-/natural-0.5.4.tgz#ace41c1655daca2912dfbf99ad7b05314e205f54"
+  resolved "git://github.com/NaturalNode/natural.git#3c492db8f96db88b3acefaaba84c2f97b0477b1b"
   dependencies:
     apparatus ">= 0.0.9"
     sylvester ">= 0.0.12"

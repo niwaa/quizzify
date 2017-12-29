@@ -1,23 +1,44 @@
-var express = require('express')
-var router = express.Router()
-const pipeline = require('../src/pipeline')
+const express = require('express')
+const router = express.Router()
+
+const Pipeline = require('../src/pipeline')
+const Wikipedia = require('../src/wikipedia')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' })
 })
 
-router.get('/getGFQ', function (req, res, next) {
+// @deprecated
+router.get('/getArticle', async function (req, res, next) {
   if (!req.query.title) {
     res.send('wikipedia title undefined')
-  } else {
-    res.json(pipeline.generateGFQdata(req.query.title))
+  }
+
+  try {
+    const article = await Wikipedia.getArticle(req.query.title)
+    res.send(article)
+  } catch (e) {
+    next(e)
   }
 })
 
-// getGFQ_mock : mocked with test data for the Client.
+router.get('/getGFQ', async function (req, res, next) {
+  if (!req.query.title) {
+    res.send('wikipedia title undefined')
+  } else {
+    try {
+      const article = await Pipeline.generateGFQdata(req.query.title)
+      res.json(article)
+    } catch (e) {
+      next(e)
+    }
+  }
+})
+
+// Get getGFQ : mocked with test data
 router.get('/getGFQ_mock', function (req, res, next) {
-  let GFQ = [
+  let GFQs = [
     {
       id: 1,
       gapfill: 'The white __ arrived.',
@@ -35,7 +56,7 @@ router.get('/getGFQ_mock', function (req, res, next) {
   if (!req.query.title) {
     res.send('wikipedia title undefined')
   } else {
-    res.json(GFQ)
+    res.json(GFQs)
   }
 })
 

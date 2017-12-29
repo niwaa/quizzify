@@ -4,7 +4,7 @@ import GapFillQuestions from './GapFillQuestions'
 
 import './App.css'
 
-const API_ENDPOINT = '/getGFQ_mock?title='
+const API_ENDPOINT = '/getGFQ?title='
 const WIKI_ENDPOINT = 'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=&explaintext=&titles='
 
 class App extends Component {
