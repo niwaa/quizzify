@@ -4,7 +4,7 @@ const API = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=ex
 const Wikipedia = {}
 
 /**
- * getArticle - Fetch a wikipedia article based on title. Ie : "Cat", "White House"
+ * getArticle - Fetch a wikipedia article based on title. Ie : "cat", "White House"
  *
  * @param {String} title
  * @returns {String} article extract

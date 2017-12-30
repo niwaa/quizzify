@@ -62,7 +62,6 @@ Pipeline.generateGFQdata = function (input) {
       })
 
       resolve(GFQs)
-      // Handle errors
     })
     .catch(function (error) {
       console.error(error)

@@ -41,11 +41,12 @@ Distractors.getPotentials = function (sentences) {
 
 /**
  * getSelection - Select a final set of N distractors.
- * 3 techniques are used / tested to select distractors :
+ * 3 techniques are used & tested to select distractors:
  * a) Get distractor from other sentences of article, belonging the same tag type.
  * b) If gap is a date, we generate nearby random dates.
  * c) If gap is a "value", we use word2vec data to find semantically similar words. We also use this method.
- * if we don't have enought distractors from other methods.
+ * If we don't have enought distractors from other methods.
+ *
  * @param {string} gap                  Chosen gap for the gapFill
  * @param {string} sentence             GapFill sentence
  * @param {object} potentialDistractors An object containing context related (article) and potentials distactors
@@ -85,6 +86,7 @@ Distractors.getSelection = function (gap, sentence, potentialDistractors, distra
  * selectFromContext - Return a selected N number of distractors from an array of potentials distractors.
  * We remove the gap from the potentials distractors.
  * Right now selection is a random function, but we want to implement a mechanism to rank distractor close in similarity to gap.
+ *
  * @param {type} gap        Description
  * @param {type} potentials Description
  * @param {type} number     Description
@@ -103,7 +105,7 @@ Distractors.selectFromContext = function (gap, potentials, number) {
 
 /**
  * selectNearDates - Return N number of random dates string.
- * This method could be improved in a lot of ways (return same date format, better algorithm for similar dates...)
+ * This method could be improved in a lot of ways (return the same date format, a better algorithm to generate similar dates...)
  * @param {string} dateString String representation of a date
  * @param {number} datesNb    number N of dates to return.
  *
@@ -124,7 +126,7 @@ Distractors.selectNearDates = function (dateString, datesNb) {
 }
 
 /**
- * selectSimilarWords - Use a wordvec data to return semantically similar words.
+ * selectSimilarWords - Uses wordvec data to return semantically similar words.
  *
  * @param {string} word
  * @param {number} number
@@ -138,7 +140,6 @@ Distractors.selectSimilarWords = function (word, number) {
     similarWords.splice(0, 1) // First result is word itself.
     similarWords.some(function (word, index) {
       let text = word[0]
-      // let distance = word[1]
       selections.push(text)
       return index === number - 1
     })

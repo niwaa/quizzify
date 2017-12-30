@@ -7,11 +7,11 @@ const Gaps = {}
  * selectGap - Select a gap in a sentence. Strategy:
  *
  * a) We extract POS / Tags from the sentence.
- * b) We arbitrarily select as "potential gaps" certain tag type (arbitrary type importance order).
+ * b) We arbitrarily select as "potential gaps" certain tag types (arbitrary type importance order).
  * c) We rank potential gaps using TfIdf against the whole article.
  *
  * Improvements: Instead of arbitrarily ranking tags importance, we could have trained a classifier on the relevance of gaps,
- * supposing we have a dataset of "good gapFills".
+ * with a dataset of "good gapFills".
  *
  * @param {array} sentences all sentences from the related article
  * @param {string} sentence  gapFill sentence
@@ -110,6 +110,7 @@ Gaps.rank = function (gaps, sentences) {
 
 /**
  * fuzzyRemoval - Remove a searchItem from an items array without case-sensitivity.
+ *
  * @param {string} searchItem string to match.
  * @param {array} items  array of string
  *

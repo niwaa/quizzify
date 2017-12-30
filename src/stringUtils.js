@@ -2,7 +2,7 @@ const natural = require('natural')
 const StringUtils = {}
 
 /**
- * removeParenthesisContent - Remove parenthesis and content from string.
+ * removeParenthesisContent - Remove parenthesis its content from string.
  * @param {string} str
  * @returns {string}
  */
