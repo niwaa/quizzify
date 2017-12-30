@@ -1,7 +1,7 @@
 # quizzify
 A web app to generate Gap Fill questions from wikipedia articles
 
-![screenshot](https://i.imgur.com/02iTOSz.png)
+![screenshot](https://i.imgur.com/Uc8xOzV.png)
 
 ## Table of Contents
 1. [Demo](#demo)
@@ -20,7 +20,7 @@ https://quizzify.herokuapp.com/
 
 ## Running the project <a name="running"></a>
 
-Clone the repo
+Clone the repo:
 
 ```$ git clone https://github.com/niwaa/quizzify.git ```
 

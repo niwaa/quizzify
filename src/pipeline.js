@@ -23,7 +23,6 @@ const GFQsError = [
  * @returns {object} promise object that will resolve to the JSON output
  */
 Pipeline.generateGFQdata = function (input) {
-  console.log(input)
   let GFQs = []
   const MAX_GFQS = 4
   const DISTRACTORS_NB = 3
