@@ -4,13 +4,20 @@ import GapFillQuestions from './GapFillQuestions'
 
 import './App.css'
 
-const API_ENDPOINT = '/getGFQ?title='
+const API_ENDPOINT = '/getGFQ?title='  // '/getGFQ_mock?title='
 const WIKI_ENDPOINT = 'https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro=&explaintext=&titles='
+const EXAMPLES = ['cat', 'White House', 'linux']
 
 class App extends Component {
   state = {
     GFQs: [],
     loading: false
+  }
+
+  clickExample (event, title) {
+    event.preventDefault()
+    event.stopPropagation()
+    this.getGFQs(title)
   }
 
   getGFQs (title) {
@@ -27,11 +34,20 @@ class App extends Component {
   }
 
   render () {
+
+    const examples = EXAMPLES.map( (example, i) =>
+        <a key={i} onClick={(e) => this.clickExample(e, example)} href=''>{example}</a>
+    )
+    .reduce((prev, curr) => [prev, ', ', curr])
+
     return (
       <div className='App'>
         <h1>Quizzify</h1>
-        <h3>Enter a Wikipedia article title, ie: "<a href='#'>cat</a>", "White House", "linux". [Sensitive to case]</h3>
-        <CreateGapFill getGFQs={(title) => this.getGFQs(title)} />
+        <h3>Enter a Wikipedia article title (case sensitive).
+        <br />
+        Try for example: {examples}
+        </h3>
+        <CreateGapFill getGFQs={(title) => this.getGFQs(title)} title={this.state.input} />
         { (!this.state.loading && this.state.input) &&
           <div>
             <GapFillQuestions data={this.state.GFQs} />

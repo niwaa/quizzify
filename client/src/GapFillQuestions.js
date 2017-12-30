@@ -15,7 +15,7 @@ class GapFillQuestions extends React.Component {
     let GFQs = this.props.data.map(function (GFQ) {
       let answer = GFQ.answer
       let distractors = GFQ.distractors.map((distractor, index) =>
-        <button onClick={() => _this._submitAnswer(answer, distractor)} key={index}>{distractor}</button>
+        <span key={index}><button onClick={() => _this._submitAnswer(answer, distractor)}>{distractor}</button> </span>
       )
       return (
         <div key={GFQ.id}>
