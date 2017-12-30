@@ -1,7 +1,7 @@
 // Quick asserts tests during development
 const Sentences = require('../sentences')
-const StringUtils = require('../StringUtils')
-const Gaps = require('../Gaps')
+const StringUtils = require('../stringUtils')
+const Gaps = require('../gaps')
 
 let input
 let result

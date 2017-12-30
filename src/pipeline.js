@@ -2,7 +2,7 @@ const Wikipedia = require('./wikipedia')
 const Sentences = require('./sentences')
 const Gaps = require('./gaps')
 const StringUtils = require('./stringUtils')
-const Distractors = require('./Distractors')
+const Distractors = require('./distractors')
 const _ = require('lodash')
 
 const Pipeline = {}

@@ -1,6 +1,6 @@
 const natural = require('natural')
 const nlp = require('compromise')
-const StringUtils = require('./StringUtils')
+const StringUtils = require('./stringUtils')
 const Gaps = {}
 
 /**

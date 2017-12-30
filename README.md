@@ -21,11 +21,13 @@ Run inside quizzify folder, to install all the necessary npm modules:
 
 ```$ yarn ```
 
+```$ cd client && yarn```
+
 (How To Install Yarn: https://yarnpkg.com/en/docs/install)
 
-Start the Server:
+Start the Server (default port 3001):
 
-``` $ PORT=3001 node bin/www```
+``` $ node bin/www```
 
 Start the Client (default port 3000):
 
