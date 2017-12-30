@@ -12,6 +12,8 @@
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "jade": "~1.11.0",
+    "lodash": "^4.17.4",
+    "moment": "^2.20.1",
     "morgan": "~1.9.0",
     "natural": "git://github.com/NaturalNode/natural.git#3c492db8f96db88b3acefaaba84c2f97b0477b1b",
     "request": "^2.83.0",

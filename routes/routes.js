@@ -1,26 +1,9 @@
 const express = require('express')
 const router = express.Router()
-
 const Pipeline = require('../src/pipeline')
-const Wikipedia = require('../src/wikipedia')
 
-/* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' })
-})
-
-// @deprecated
-router.get('/getArticle', async function (req, res, next) {
-  if (!req.query.title) {
-    res.send('wikipedia title undefined')
-  }
-
-  try {
-    const article = await Wikipedia.getArticle(req.query.title)
-    res.send(article)
-  } catch (e) {
-    next(e)
-  }
+  res.render('index', { title: 'Quizzify' })
 })
 
 router.get('/getGFQ', async function (req, res, next) {
@@ -36,7 +19,7 @@ router.get('/getGFQ', async function (req, res, next) {
   }
 })
 
-// Get getGFQ : mocked with test data
+// getGFQ mocked with test data
 router.get('/getGFQ_mock', function (req, res, next) {
   let GFQs = [
     {
