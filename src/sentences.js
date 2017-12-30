@@ -1,4 +1,3 @@
-const natural = require('natural')
 const nlp = require('compromise')
 
 const Sentences = {}
@@ -15,13 +14,6 @@ Sentences.extractAll = function (input) {
   sentencesRaw.forEach(function (s) {
     sentences.push(s.text)
   })
-  return sentences
-}
-
-// @deprecated. Not working well with sentences like : John X, M.D in VA.
-Sentences.extractAll_old = function (input) {
-  const tokenizer = new natural.RegexpTokenizer({pattern: /[!?.]/})
-  const sentences = tokenizer.tokenize(input)
   return sentences
 }
 

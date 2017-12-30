@@ -21,7 +21,7 @@ StringUtils.createGapFillSentence = function (sentence, gap) {
     return null
   }
   let search = natural.LevenshteinDistance(gap, sentence, {search: true})
-  return sentence.replace(search.substring, '__')
+  return sentence.replace(search.substring, '____')
 }
 
 module.exports = StringUtils

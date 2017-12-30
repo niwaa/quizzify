@@ -4,15 +4,24 @@ const StringUtils = require('./StringUtils')
 const Gaps = {}
 
 /**
- * getMaxTFIDF - Return the sentence term with maximum TFIDF (comparatively to other sentences)
+ * selectGap - Select a gap in a sentence. Strategy:
  *
- * @param {array} sentences array of sentences
- * @param {number} index Index of sentences
+ * a) We extract POS / Tags from the sentence.
+ * b) We arbitrarily select as "potential gaps" certain tag type (arbitrary type importance order).
+ * c) We rank potential gaps using TfIdf against the whole article.
  *
- * @returns {string}
+ * Improvements: Instead of arbitrarily ranking tags importance, we could have trained a classifier on the relevance of gaps,
+ * supposing we have a dataset of "good gapFills".
+ *
+ * @param {array} sentences all sentences from the related article
+ * @param {string} sentence  gapFill sentence
+ * @param {string} input     user input (wikipedia title)
+ * @param {array} usedGaps  gaps that have already been used.
+ *
+ * @returns {type} Description
  */
 Gaps.selectGap = function (sentences, sentence, input, usedGaps) {
-  let gap
+  let gap = {}
   let potentialGaps = []
   let sentenceCleaned = StringUtils.removeParenthesisContent(sentence)
   let sentenceNLP = nlp(sentenceCleaned)
@@ -24,28 +33,36 @@ Gaps.selectGap = function (sentences, sentence, input, usedGaps) {
   let topics = sentenceNLP.topics().out('array')
   let dates = sentenceNLP.dates().out('array')
   let adjectives = sentenceNLP.adjectives().out('array')
-  console.log('nouns', nouns)
-  console.log('people', people)
-  console.log('places', places)
-  console.log('values', values)
-  console.log('topics', topics)
-  console.log('dates', dates)
-  console.log('adjectives', adjectives)
+  console.debug('nouns', nouns)
+  console.debug('people', people)
+  console.debug('places', places)
+  console.debug('values', values)
+  console.debug('topics', topics)
+  console.debug('dates', dates)
+  console.debug('adjectives', adjectives)
 
   if (dates.length > 0) {
     potentialGaps = [...dates]
-  }
-  else if (nouns.people > 0) {
+    gap.tag = 'date'
+  } else if (people.length > 0) {
     potentialGaps = [...people]
-  }
-  else if (nouns.places > 0) {
+    gap.tag = 'people'
+  } else if (places.length > 0) {
     potentialGaps = [...places]
-  }
-  else if (nouns.length > 3) {
+    gap.tag = 'place'
+  } else if (nouns.length > 2) {
     potentialGaps = [...nouns]
+    gap.tag = 'noun'
+  } else if (values.length > 0) {
+    potentialGaps = [...values]
+    gap.tag = 'value'
+  } else {
+    potentialGaps = [...adjectives]
+    gap.tag = 'adjective'
   }
-  else {
-    potentialGaps = [...nouns, ...adjectives]
+
+  if (potentialGaps.length === 0) {
+    potentialGaps = [...nouns]
   }
 
   // Remove user input topic.
@@ -57,19 +74,20 @@ Gaps.selectGap = function (sentences, sentence, input, usedGaps) {
   })
 
   let ranks = Gaps.rank(potentialGaps, sentences)
+
   // Select gap with the highest rank.
-  gap = Object.keys(ranks).reduce(function (a, b) { return ranks[a] > ranks[b] ? a : b })
-  console.log('ranks', ranks, gap)
+  gap.text = Object.keys(ranks).reduce(function (a, b) { return ranks[a] > ranks[b] ? a : b })
+
   return gap
 }
 
 /**
- * rank - Description
+ * rank - Calculate TfIdf for each gap against all sentences.
  *
- * @param {array} gaps      Description
- * @param {array} sentences Description
+ * @param {array} gaps
+ * @param {array} sentences
  *
- * @returns {object} Description
+ * @returns {object} Gap and average TfIdf
  */
 Gaps.rank = function (gaps, sentences) {
   let ranks = {}

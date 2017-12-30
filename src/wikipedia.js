@@ -1,6 +1,6 @@
 const request = require('request')
 
-const api = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&formatversion=2&explaintext=&titles='
+const API = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&formatversion=2&explaintext=&titles='
 const Wikipedia = {}
 
 /**
@@ -10,7 +10,7 @@ const Wikipedia = {}
  * @returns {String} article extract
  */
 Wikipedia.getArticle = function (title) {
-  const url = api + title
+  const url = API + title
   return new Promise(function (resolve, reject) {
     request.get(url, (error, response, body) => {
       if (error) {
@@ -22,9 +22,13 @@ Wikipedia.getArticle = function (title) {
       let extract
 
       if (!pages[0].missing) {
-        extract = pages[0].extract
+        if (pages[0].extract.length > 300) {
+          extract = pages[0].extract
+        } else {
+          extract = null
+        }
       } else {
-        extract = 'Not found'
+        extract = null
       }
       resolve(extract)
     })
